@@ -1,4 +1,4 @@
-#MATAV GAMBA
+# MATAV GAMBA
  - made by Dejny
 ##How to Use
 
@@ -7,7 +7,7 @@ Use the package manager [pip](https://pip.pypa.io/en/stable/) to install package
 
 - Run the html script and register
 
-##Open terminal and run:
+## Open terminal and run:
 ```bash
 pip install requests
 ```
