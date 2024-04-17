@@ -18,3 +18,4 @@ if you want to do it riskier, open another terminal and run:
 ```bash
 python send_requests2.py
 ```
+now enjoy the profits :D
