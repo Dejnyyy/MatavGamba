@@ -5,32 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gambaro</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    <h1>Sazenicko sazeni</h1>
-
-    <h2>Registrace</h2>
+    <h1 class="text-center text-5xl font-mono mt-8">Sazenicko sazeni</h1>
+<div class="container mx-auto text-center"> 
+    <h2 class="font-bold mt-16">Registrace</h2>
     <form id="registrace" method="post">
-        <input type="text" id="nickname"><br>
-        <input type="password" id="password"><br>
-        <button type="submit">Registrovat</button>
+        <input type="text" id="nickname" class="border px-4 py-2 rounded-xl border-black"><br>
+        <input type="password" id="password"class="border px-4 py-2 rounded-xl border-black"><br>
+        <button type="submit"class="px-4 py-2 rounded-xl border hover:bg-gray-200 ">Registrovat</button>
     </form>
-
-    <!-- Button to trigger batch registration -->
-    <button id="batchRegister">Registrovat Batch</button>
-
-    <h2>Seznam Uzivatelu</h2>
-    <button onclick="getAllUsers()">Zobrazit uzivatele</button>
+    <button id="batchRegister"class="px-4 py-2 rounded-xl border hover:bg-gray-200 ">Registrovat Batch</button>
+    <h2 class="font-bold mt-16">Seznam Uzivatelu</h2>
+    <button onclick="getAllUsers()"class="px-4 py-2 rounded-xl border hover:bg-gray-200 ">Zobrazit uzivatele</button>
     <ul id="usersList"></ul>
 
-    <h2>Vsadit si</h2>
-    <form id="betForm">
-        ID Uzivatele: <input type="number" id="userId" required><br>
-        Heslo: <input type="password" id="betPassword" required><br>
-        Sazka: <input type="number" id="betSazka" required><br>
-        <button type="submit">Vsadit</button>
+    <h2 class="font-bold mt-16" >Vsadit si</h2>
+    <form id="betForm"class="">
+        usrID: <input type="number" id="userId" required class="border px-4 py-2 rounded-xl border-black"><br>
+        Heslo: <input type="password" id="betPassword" required class="border px-4 py-2 rounded-xl border-black"><br>
+        Sazka: <input type="number" id="betSazka" required class="border px-4 py-2 rounded-xl border-black"><br>
+        <button type="submit"class="px-4 py-2 rounded-xl border hover:bg-gray-200 ">Vsadit</button>
     </form>
-
+</div>
 <script>
 $(document).ready(function(){
     $("#registrace").submit(function(event){
