@@ -2,8 +2,11 @@ import requests
 import time
 import json
 
-# Define the URL and the headers
-url = "https://gamba.matav.cz/gamba/2925"
+yourId = "2939"  # Variable for dynamic URL
+
+# Use string formatting to insert 'yourId' into the URL
+url = f"https://gamba.matav.cz/gamba/{yourId}"
+
 headers = {
     "accept": "*/*",
     "accept-language": "en-GB,en",
@@ -17,28 +20,45 @@ headers = {
     "user-agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1"
 }
 
-# Initialize the variable 'a'
-a = 1
+a = 1  # Initial value for 'sazka'
 
-# Infinite loop to send the requests
 while True:
     data = {
         "heslo": "basicPassword123",
         "sazka": a
     }
     response = requests.post(url, headers=headers, data=data)
-    print(f"Response: {response.text}")
-
-    # Check response and adjust 'a' accordingly
+    
     if response.status_code == 200:
         try:
             response_data = response.json()
+            
+            # Calculate half of the current balance
+            if "bilance" in response_data:
+                pulkacashe = response_data["bilance"] / 2
+                
+                # If 'a' is greater than 'pulkacashe', adjust 'a'
+                if a > pulkacashe:
+                    a = int(pulkacashe / 2)
+                    print(f"'a' adjusted to half of 'pulkacashe': {a}")
+            
             if "vyhra" in response_data:
-                vyhra_value = str(response_data["vyhra"])
+                vyhra_value = str(response_data["vyhra"]) 
                 if "-" in vyhra_value:
-                    a *= 2  
+                    a *= 2  # Double 'a' if "vyhra" contains "-"
+                    if vyhra_value == -32:
+                        a = 1
                 else:
                     a = 1  
+                   
+            if "vyhra:-32" in response_data:
+                a = 1
+        
         except json.JSONDecodeError:
             print("Error decoding JSON from response")
+    else:
+        print(f"Failed to fetch data, status code: {response.status_code}")
+
+    # Print status and response for clarity
+    print(f"Status Code: {response.status_code}, Response: {response.text}")
 
