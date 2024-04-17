@@ -2,7 +2,7 @@ import requests
 import time
 import json
 
-yourId = "2932"  # Variable for dynamic URL
+yourId = "2939"  # Variable for dynamic URL
 
 # Use string formatting to insert 'yourId' into the URL
 url = f"https://gamba.matav.cz/gamba/{yourId}"
@@ -43,13 +43,16 @@ while True:
                     print(f"'a' adjusted to half of 'pulkacashe': {a}")
             
             if "vyhra" in response_data:
-                vyhra_value = str(response_data["vyhra"])
+                vyhra_value = str(response_data["vyhra"]) 
                 if "-" in vyhra_value:
                     a *= 2  # Double 'a' if "vyhra" contains "-"
-                    print(f"'a' doubled to: {a}")
+                    if vyhra_value == -32:
+                        a = 1
                 else:
                     a = 1  
                    
+            if "vyhra:-32" in response_data:
+                a = 1
         
         except json.JSONDecodeError:
             print("Error decoding JSON from response")
