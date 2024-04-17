@@ -30,13 +30,14 @@ while True:
     response = requests.post(url, headers=headers, data=data)
     
     if response.status_code == 200:
+        
         try:
             response_data = response.json()
-            
             if "vyhra" in response_data:
                 vyhra_value = str(response_data["vyhra"]) 
                 if "-" in vyhra_value:
                     a *= 2  # Double 'a' if "vyhra" contains "-"
+                    print(f"Dejny je god")
                 else:
                     a = 1  
                    
