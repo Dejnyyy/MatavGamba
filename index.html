@@ -7,18 +7,18 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-gray-100">
     <h1 class="text-center text-5xl font-mono mt-8">Sazenicko sazeni</h1>
 <div class="container mx-auto text-center"> 
     <h2 class="font-bold mt-16">Registrace</h2>
     <form id="registrace" method="post">
         <input type="text" id="nickname" class="border px-4 py-2 rounded-xl border-black"><br>
         <input type="password" id="password"class="border px-4 py-2 rounded-xl border-black"><br>
-        <button type="submit"class="px-4 py-2 rounded-xl border hover:bg-gray-200 ">Registrovat</button>
+        <button type="submit"class="px-4 py-2 rounded-xl border hover:bg-gray-200 bg-white ">Registrovat</button>
     </form>
-    <button id="batchRegister"class="px-4 py-2 rounded-xl border hover:bg-gray-200 ">Registrovat Batch</button>
+    <button id="batchRegister"class="px-4 py-2 rounded-xl border hover:bg-gray-200 bg-white">Registrovat Batch</button>
     <h2 class="font-bold mt-16">Seznam Uzivatelu</h2>
-    <button onclick="getAllUsers()"class="px-4 py-2 rounded-xl border hover:bg-gray-200 ">Zobrazit uzivatele</button>
+    <button onclick="getAllUsers()"class="px-4 py-2 rounded-xl border hover:bg-gray-200 bg-white">Zobrazit uzivatele</button>
     <ul id="usersList"></ul>
 
     <h2 class="font-bold mt-16" >Vsadit si</h2>
@@ -26,7 +26,7 @@
         usrID: <input type="number" id="userId" required class="border px-4 py-2 rounded-xl border-black"><br>
         Heslo: <input type="password" id="betPassword" required class="border px-4 py-2 rounded-xl border-black"><br>
         Sazka: <input type="number" id="betSazka" required class="border px-4 py-2 rounded-xl border-black"><br>
-        <button type="submit"class="px-4 py-2 rounded-xl border hover:bg-gray-200 ">Vsadit</button>
+        <button type="submit"class="px-4 py-2 rounded-xl border hover:bg-gray-200 bg-white ">Vsadit</button>
     </form>
 </div>
 <script>
