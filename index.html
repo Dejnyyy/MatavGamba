@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gambaro</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <h1>Sazenicko sazeni</h1>
+
+    <h2>Registrace</h2>
+    <form id="registrace" method="post">
+        <input type="text" id="nickname"><br>
+        <input type="password" id="password"><br>
+        <button type="submit">Registrovat</button>
+    </form>
+
+    <!-- Button to trigger batch registration -->
+    <button id="batchRegister">Registrovat Dejny Batch</button>
+
+    <h2>Seznam Uzivatelu</h2>
+    <button onclick="getAllUsers()">Zobrazit uzivatele</button>
+    <ul id="usersList"></ul>
+
+    <h2>Vsadit si</h2>
+    <form id="betForm">
+        ID Uzivatele: <input type="number" id="userId" required><br>
+        Heslo: <input type="password" id="betPassword" required><br>
+        Sazka: <input type="number" id="betSazka" required><br>
+        <button type="submit">Vsadit</button>
+    </form>
+
+<script>
+$(document).ready(function(){
+    $("#registrace").submit(function(event){
+        event.preventDefault();
+        $.ajax({
+            url:'https://gamba.matav.cz/uzivatele',
+            type: 'POST',
+            data: $.param({
+                prezdivka: $('#nickname').val(),
+                heslo: $('#password').val()     
+            }),
+            success: function(data){
+                alert("Uživatel byl zaregistrován")
+                getAllUsers();
+            },
+            error: function(data){
+                alert('Chyba: ' + data.responseText)
+            }
+        });
+    });
+
+    // Batch registration function
+    $("#batchRegister").click(function() {
+        for (let i = 1; i <= 5; i++) {  // Adjust the number of users to be registered
+            $.ajax({
+                url: 'https://gamba.matav.cz/uzivatele',
+                type: 'POST',
+                data: $.param({
+                    prezdivka: 'Dejny' + i,  // Append i to make unique usernames
+                    heslo: 'basicPassword123'     
+                }),
+                success: function(data){
+                    console.log("Uživatel Dejny" + i + " byl zaregistrován");
+                },
+                error: function(data){
+                    alert('Chyba při registraci uživatele Dejny' + i + ': ' + data.responseText);
+                }
+            });
+        }
+        getAllUsers();
+    });
+
+    $("#betForm").submit(function(event) {
+        event.preventDefault();
+        $.ajax({
+            url: 'https://gamba.matav.cz/gamba/' + $("#userId").val(),
+            type: 'POST',
+            data: $.param({
+                heslo: $('#betPassword').val(),
+                sazka: $('#betSazka').val()     
+            }),
+            success: function(data){
+                alert('Sázka uzavřena: ' + data.responseText);
+                getAllUsers();
+            },
+            error: function(data){
+                alert('Chyba: ' + data.responseText)
+            }
+        });
+    });
+});
+
+function getAllUsers(){
+   $.ajax({
+    url: 'https://gamba.matav.cz/',
+    type: 'GET',
+    success: function(data){
+        var usersList = $('#usersList')
+        usersList.empty();
+        data.forEach(function(user) {
+            usersList.append('<li> ID Uživatele:' + user.id + ', Přezdívka: ' + user.prezdivka + ', Zůstatek: ' + user.bilance + 'CZK</li>');
+        });
+    }
+  });
+}
+</script>
+</body>
+</html>
