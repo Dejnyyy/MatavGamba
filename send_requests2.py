@@ -2,7 +2,7 @@ import requests
 import time
 import json
 
-yourId = "2939"  # Variable for dynamic URL
+yourId = "2930"  # Variable for dynamic URL
 
 # Use string formatting to insert 'yourId' into the URL
 url = f"https://gamba.matav.cz/gamba/{yourId}"
@@ -30,24 +30,14 @@ while True:
     response = requests.post(url, headers=headers, data=data)
     
     if response.status_code == 200:
+        
         try:
             response_data = response.json()
-            
-            # Calculate half of the current balance
-            if "bilance" in response_data:
-                pulkacashe = response_data["bilance"] / 2
-                
-                # If 'a' is greater than 'pulkacashe', adjust 'a'
-                if a > pulkacashe:
-                    a = int(pulkacashe / 2)
-                    print(f"'a' adjusted to half of 'pulkacashe': {a}")
-            
             if "vyhra" in response_data:
                 vyhra_value = str(response_data["vyhra"]) 
                 if "-" in vyhra_value:
                     a *= 2  # Double 'a' if "vyhra" contains "-"
-                    if vyhra_value == -32:
-                        a = 1
+                    print(f"Dejny je god")
                 else:
                     a = 1  
                    
