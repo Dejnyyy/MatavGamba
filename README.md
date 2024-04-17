@@ -2,6 +2,7 @@
  - made by Dejny
 ## How to Use
 
+Download [python](https://www.python.org/downloads/) if not downloaded yet.
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install packages.
 
 
