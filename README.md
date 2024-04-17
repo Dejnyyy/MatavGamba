@@ -2,13 +2,12 @@
  - made by Dejny
 ##How to Use
 
-
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install packages.
 
 
-Run the html script and register
+- Run the html script and register
 
-Open terminal and run:
+##Open terminal and run:
 ```bash
 pip install requests
 ```
