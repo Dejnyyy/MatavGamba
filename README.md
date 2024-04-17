@@ -6,7 +6,7 @@ Use the package manager [pip](https://pip.pypa.io/en/stable/) to install package
 
 
 - Run the html script and register
-
+- edit the "yourId" variable to your actual id
 ## Open terminal and run:
 ```bash
 pip install requests
