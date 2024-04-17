@@ -2,7 +2,7 @@ import requests
 import time
 import json
 
-yourId = "2921"  # Variable for dynamic URL
+yourId = "2930"  # Variable for dynamic URL
 
 # Use string formatting to insert 'yourId' into the URL
 url = f"https://gamba.matav.cz/gamba/{yourId}"
