@@ -51,4 +51,3 @@ while True:
 
     # Print status and response for clarity
     print(f"Status Code: {response.status_code}, Response: {response.text}")
-
